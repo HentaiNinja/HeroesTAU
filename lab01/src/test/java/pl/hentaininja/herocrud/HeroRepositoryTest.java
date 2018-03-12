@@ -10,10 +10,9 @@ public class HeroRepositoryTest {
     public void createHeroTest() {
        Hero tHero = new Hero();
 
-       HeroRepositoryFactory.getInstance().add(tHero);
+       heroRepository.getInstance().add(tHero);
 
-       assertEquals(tHero.getNickName(), HeroRepositoryFactory.getInstance().getByName("Hero"));
-       assertThat("Hero", HeroRepositoryFactory.getInstance().getById(1), );
+       assertThat("Hero", heroRepository.getInstance().getById(1));
     }
 
     @Test
@@ -29,23 +28,20 @@ public class HeroRepositoryTest {
     @Test
     public void deleteHeroTest() {
        
-       HeroRepositoryFactory.getInstance().delete(3);
-       assertNull(HeroRepositoryFactory.getInstance().getById(3));
-       assertNotNull(HeroRepositoryFactory.getInstance().getAll().isEmpty());
+        heroRepository.getInstance().delete(1);
+        assertNull(heroRepository.getInstance().getById(1));
     }
 
     @Test
     public void getById() {
-       
-       //Hero hero = HeroRepositoryFactory.getInstance().getById(1);
-       //assertEquals(HeroRepositoryFactory.getInstance().getById(1), hero.getId(1));
-       Long idToFind = (long) 1;
-       assertNotNull(HeroRepositoryFactory.getById(idToFind));
+
+        Long idToFind = (long) 1;
+        assertNotNull(heroRepository.getById(idToFind));
     }
 
     @Test
     public void getAll() {
-        assertNotNull(HeroRepositoryFactory.getAll().isEmpty);
+        assertNotNull(heroRepository.getAll());
     }
 
     @Before
