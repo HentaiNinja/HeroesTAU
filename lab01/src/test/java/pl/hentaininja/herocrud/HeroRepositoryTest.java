@@ -2,9 +2,17 @@ package pl.hentaininja.com;
 
 import static org.junit.Assert.*;
 
+import org.junit.Before;
+import org.junit.Test;
+import pl.hentaininja.herocrud.domain.Hero;
+import pl.hentaininja.herocrud.repository.HeroRepository;
+import pl.hentaininja.herocrud.repository.HeroRepositoryFactory;
+
 public class HeroRepositoryTest {
     
     public List<Hero> heroDb;
+
+    HeroRepository heroRepository;
 
     @Test
     public void createHeroTest() {
