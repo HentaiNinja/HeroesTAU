@@ -31,9 +31,9 @@ public class Hero {
         this.name = name;
     }
 
-    public String getclass()
+    public String getklasa()
     {
-        return class;
+        return klasa;
     }
     public void setklasa(String klasa)
     {

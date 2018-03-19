@@ -13,5 +13,5 @@ public interface HeroRepository {
     public int update(Hero hero, long id) throws SQLException;
     public Hero getById(long id) throws SQLException;
     public Hero getByName(String name);
-    public Hero getByClass(String class);
+    public Hero getByKlasa(String klasa);
 }

@@ -59,7 +59,7 @@ public class HeroRepositoryImpl implements HeroRepository {
                 Hero h = new hero();
                 h.setId(rs.getInt("id"));
                 h.setName(rs.getString("name"));
-                h.setClass(rs.getString("class"));
+                h.setKlasa(rs.getString("class"));
                 heroes.add(h);
             }
 

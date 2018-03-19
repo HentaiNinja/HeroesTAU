@@ -27,7 +27,7 @@ public class HeroRepositoryTest {
 
        tHero.setId(1);
        tHero.setName("Knight");
-       tHero.setClass("tank");
+       tHero.setKlasa("tank");
        heroRepository.add(tHero);
 
        assertEquals(tHero.getName(), heroRepository.getById(1).getName());
@@ -60,7 +60,7 @@ public class HeroRepositoryTest {
 
     @Test
     public boid getByName() {
-        Hero hero = heroRepository.getByClass("tank");
+        Hero hero = heroRepository.getByKlasa("tank");
         assertThat(hero.getName(), is("Warrior"));
     }
 
@@ -77,17 +77,17 @@ public class HeroRepositoryTest {
         Hero aDps = new Hero();
         aDps.setId(2);
         aDps.setName("Archer");
-        aDps.setClass("dps");
+        aDps.setKlasa("dps");
 
         Hero wDps = new Hero();
         wDps.setId(3);
         wDps.setName("Wizard");
-        wDps.setClass("dps");
+        wDps.setKlasa("dps");
 
         Hero wTank = new Hero();
         wTank.setId(4);
         wTank.setName("Warrior");
-        wTank.setClass("tank");           
+        wTank.setKlasa("tank");           
 
         heroRepository.add(aDps);
         heroRepository.add(wDps);
