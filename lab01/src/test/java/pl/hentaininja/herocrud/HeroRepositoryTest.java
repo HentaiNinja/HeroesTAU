@@ -1,12 +1,21 @@
-package pl.hentaininja.com;
+package pl.hentaininja.herocrud;
 
-import static org.junit.Assert.*;
+import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertFalse;
+import static org.junit.Assert.assertNull;
+import static org.junit.Assert.assertThat;
+import static org.junit.Assert.assertNotNull;
+
+import java.sql.DriverManager;
+import java.sql.SQLException;
 
 import org.junit.Before;
 import org.junit.Test;
+
 import pl.hentaininja.herocrud.domain.Hero;
 import pl.hentaininja.herocrud.repository.HeroRepository;
 import pl.hentaininja.herocrud.repository.HeroRepositoryFactory;
+import static org.hamcrest.CoreMatchers.*;
 
 public class HeroRepositoryTest {
     

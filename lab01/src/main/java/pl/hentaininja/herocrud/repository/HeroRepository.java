@@ -1,8 +1,10 @@
-package pl.hentaininja.com;
+package pl.hentaininja.repository;
 
 import pl.hentaininja.herocrud.domain.Hero;
 
 import java.util.List;
+import java.sql.SQLClientInfoException;
+import java.sql.SQLException;
 
 public interface HeroRepository {
     public List<Hero> getAll();

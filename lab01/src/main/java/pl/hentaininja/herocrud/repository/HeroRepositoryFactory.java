@@ -1,4 +1,4 @@
-package pl.hentaininja.com;
+package pl.hentaininja.repository;
 
 import pl.hentaininja.herocrud.repository.HeroRepositoryImpl;
 
