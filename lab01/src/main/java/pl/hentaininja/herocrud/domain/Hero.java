@@ -1,9 +1,9 @@
 package pl.hentaininja.com;
 
 public class Hero {
-    private Int Id = null;
-    private String name = null;
-    private String class = null;
+    private Int Id;
+    private String name;
+    private String class;
 
     public Hero(){}
 
