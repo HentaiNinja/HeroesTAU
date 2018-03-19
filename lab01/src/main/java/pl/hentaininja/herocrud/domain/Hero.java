@@ -3,14 +3,14 @@ package pl.hentaininja.domain;
 public class Hero {
     private Int Id;
     private String name;
-    private String class;
+    private String klasa;
 
     public Hero(){}
 
-    public Hero(int id, String name, String class){
+    public Hero(int id, String name, String klasa){
         this.id = id;
         this.name = name;
-        this.class = class;
+        this.klasa = klasa;
     }
 
     public Int getid()
@@ -35,8 +35,8 @@ public class Hero {
     {
         return class;
     }
-    public void setclass(String class)
+    public void setklasa(String klasa)
     {
-        this.class = class;
+        this.klasa = klasa;
     }
 }
