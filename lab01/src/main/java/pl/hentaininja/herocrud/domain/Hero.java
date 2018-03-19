@@ -1,4 +1,4 @@
-package pl.hentaininja.domain;
+package pl.hentaininja.herocrud.domain;
 
 public class Hero {
     private Int Id;
