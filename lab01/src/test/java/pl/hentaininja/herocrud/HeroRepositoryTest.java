@@ -24,7 +24,7 @@ public class HeroRepositoryTest {
     @Before
     public void initDatabase() throws SQLException {
         String url = "jdbc:hsqldb:hsql://localhost/workdb";
-        heroRepository = HeroRepositoryImpl(DriverManager.getConnection(url));
+        heroRepository = new HeroRepositoryImpl(DriverManager.getConnection(url));
         
         Hero aDps = new Hero();
         aDps.setid(2);
@@ -74,6 +74,7 @@ public class HeroRepositoryTest {
        
         heroRepository.delete(4);
         assertNull(heroRepository.getById(4).getname());
+        assertFalse(heroRepository.getAll().isEmpty());
     }
 
     @Test
@@ -86,7 +87,7 @@ public class HeroRepositoryTest {
     @Test
     public void getByName() {
         Hero hero = heroRepository.getByName("Wizard");
-        assertThat(hero.getname(), is("Warrior"));
+        assertThat(hero.getklasa(), is("dps"));
     }
 
     @Test

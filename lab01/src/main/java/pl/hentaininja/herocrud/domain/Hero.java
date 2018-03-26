@@ -1,25 +1,25 @@
 package pl.hentaininja.herocrud.domain;
 
 public class Hero {
-    private int Id;
+    private int id;
     private String name;
     private String klasa;
 
     public Hero(){}
 
     public Hero(int id, String name, String klasa){
-        this.Id = id;
+        this.id = id;
         this.name = name;
         this.klasa = klasa;
     }
 
     public int getid()
     {
-        return Id;
+        return id;
     }
     public void setid(int id)
     {
-        this.Id = id;
+        this.id = id;
     }    
     
     public String getname()

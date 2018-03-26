@@ -1,4 +1,4 @@
-package pl.hentaininja.com;
+package pl.hentaininja.app;
 
 public class Party {
     String name = null;
