@@ -6,7 +6,6 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
-import java.util.ArrayList;
 import java.util.LinkedList;
 import java.util.List;
 
@@ -17,7 +16,12 @@ public class HeroRepositoryImpl implements HeroRepository {
     private Connection connection;
 
     private PreparedStatement addHeroStmt;
-    private PreparedStatement getAllHeroStmt;
+	private PreparedStatement getAllHeroStmt;
+	private PreparedStatement deleteHeroStmt;
+
+	private PreparedStatement getByIdStmt;
+	private PreparedStatement getByNameStmt;
+    private PreparedStatement updateHeroStmt;
 
     public HeroRepositoryImpl(Connection connection) throws SQLException {
         this.connection = connection;
@@ -25,6 +29,9 @@ public class HeroRepositoryImpl implements HeroRepository {
             createTables();
         }
         setConnection(connection);
+    }
+
+    public HeroRepositoryImpl() {
     }
 
     public void createTables() throws SQLException {
@@ -50,74 +57,134 @@ public class HeroRepositoryImpl implements HeroRepository {
         }
     }
 
-    public List<hero> getAllHeroes() {
-        List<Person> heroes = new LinkedList<>();
-        try {
-            ResultSet rs = getAllHeroesStmt.executeQuery();
+    public Connection getConnection()
+    {
+     return connection;
+    }
 
-            while (rs.next()) {
-                Hero h = new hero();
-                h.setId(rs.getInt("id"));
-                h.setName(rs.getString("name"));
-                h.setKlasa(rs.getString("class"));
+
+
+  public void setConnection(Connection connection) throws SQLException{
+      this.connection = connection;
+      addHeroStmt = connection.prepareStatement("INSERT INTO Hero(id,name,klasa) VALUES (?,?,?)");
+      getAllHeroStmt = connection.prepareStatement("SELECT id,name,klasa FROM hero");
+      getByIdStmt = connection.prepareStatement("SELECT * FROM Hero WHERE id = ? ");	
+      updateHeroStmt = connection.prepareStatement("UPDATE Hero SET name= ?, klasa= ? WHERE id = ?");
+      deleteHeroStmt = connection.prepareStatement("DELETE FROM Hero WHERE id = ?");
+      getByNameStmt = connection.prepareStatement("SELECT * FROM hero WHERE name= ?");
+}
+
+    @Override
+    public List<Hero> getAll() {
+        List<Hero> heroes = new LinkedList<Hero>();
+        try
+        {
+            ResultSet rs = getAllHeroStmt.executeQuery();
+            
+            while(rs.next())
+           {
+                Hero h = new Hero();
+                h.setid(rs.getInt("id"));
+                h.setname(rs.getString("name"));
+                h.setklasa(rs.getString("klasa"));
                 heroes.add(h);
             }
+        }
 
-        } catch (SQLException e) {
-            throw new IllegalStateException(e.getMessage() + "\n" + e.getStackTrace().toString());
+        catch(SQLException e)
+        {
+            e.printStackTrace();
         }
         return heroes;
     }
 
     @Override
-    public void initDatabase() {
-
-    }
-
-    @Override
-    public Hero getById(Long id) {
-        return null;
-    }
-
-    @Override
-    public void add(Hero hero) {
+    public int add(Hero h) {
+        int count = 0;
         try{
-            addHeroStmt.setInt(1, h.getId());
-            addHeroStmt.setString(2, h.getName());
-            addHeroStmt.setString(3, h.getClass());
+            addHeroStmt.setInt(1, h.getid());
+            addHeroStmt.setString(2, h.getname());
+            addHeroStmt.setString(3, h.getklasa());
             count = addHeroStmt.executeUpdate(); 
         }
         catch (SQLException e){
             throw new IllegalStateException(e.getMessage() + "\n" + e.getStackTrace().toString());
         }
+        return count;
     }
 
     @Override
-    public void delete(Hero hero) {
-
+	public Hero getById(long id) throws SQLException {
+		
+		Hero h = new Hero();
+		try
+		{
+			getByIdStmt.setLong(1, id);		
+			ResultSet rs = getByIdStmt.executeQuery();
+			while(rs.next())
+				{
+				h.setid(rs.getInt("id"));
+				h.setname(rs.getString("name"));
+				h.setklasa(rs.getString("klasa"));
+				}
+		}
+		catch(SQLException e)
+		{
+			e.printStackTrace();
+		}
+		return h;
     }
 
     @Override
-    public void update(long oldId, Hero newHero) {
-
+	public int update(Hero h, long id) throws SQLException{
+		int count = 0;
+	
+		try
+		{
+			updateHeroStmt.setString(1, h.getname());
+			updateHeroStmt.setString(2, h.getklasa());
+			updateHeroStmt.setLong(3, id);
+			count = updateHeroStmt.executeUpdate();
+		}
+		catch (SQLException e)
+		{
+			e.printStackTrace();
+		} 
+		return count;
+    }
+    
+    @Override
+	public void delete(long id) {
+		try
+		{
+			deleteHeroStmt.setLong(1, id);
+			deleteHeroStmt.executeUpdate();
+		}catch(SQLException e)
+		{
+			e.printStackTrace();
+		}
     }
 
     @Override
-    public Connection getConnection() {
-        return connection;
-    }
+	public Hero getByName(String name) {
+		Hero hero = new Hero();
+		try
+		{
+			getByNameStmt.setString(1, name);	
+			ResultSet rs = getByNameStmt.executeQuery();
 
-    /**
-     * @param connection the connection to set
-     */
-    public void setConnection(Connection connection) throws SQLException {
-        this.connection = connection;
-        addPersonStmt = connection.
-            prepareStatement
-            ("INSERT INTO Heroes (name, str) VALUES (?, ?)");
-        getAllHeroesStmt = connection.
-        prepareStatement("SELECT * FROM Hero");
-    }
-
+			while(rs.next())
+			{
+				hero.setid(rs.getInt("id"));
+				hero.setname(rs.getString("name"));
+				hero.setklasa(rs.getString("klasa"));
+			}
+		}
+		catch(SQLException e)
+		{
+			e.printStackTrace();
+		}
+		return hero;
+}
 
 }

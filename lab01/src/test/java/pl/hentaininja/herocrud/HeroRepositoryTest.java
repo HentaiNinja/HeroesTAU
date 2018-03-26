@@ -14,41 +14,66 @@ import org.junit.Test;
 
 import pl.hentaininja.herocrud.domain.Hero;
 import pl.hentaininja.herocrud.repository.HeroRepository;
-import pl.hentaininja.herocrud.repository.HeroRepositoryFactory;
+import pl.hentaininja.herocrud.repository.HeroRepositoryImpl;
 import static org.hamcrest.CoreMatchers.*;
 
 public class HeroRepositoryTest {
     
     HeroRepository heroRepository;
 
+    @Before
+    public void initDatabase() throws SQLException {
+        String url = "jdbc:hsqldb:hsql://localhost/workdb";
+        heroRepository = HeroRepositoryImpl(DriverManager.getConnection(url));
+        
+        Hero aDps = new Hero();
+        aDps.setid(2);
+        aDps.setname("Archer");
+        aDps.setklasa("dps");
+
+        Hero wDps = new Hero();
+        wDps.setid(3);
+        wDps.setname("Wizard");
+        wDps.setklasa("dps");
+
+        Hero wTank = new Hero();
+        wTank.setid(4);
+        wTank.setname("Warrior");
+        wTank.setklasa("tank");           
+
+        heroRepository.add(aDps);
+        heroRepository.add(wDps);
+        heroRepository.add(wTank);
+    }
+
     @Test
     public void createHeroTest() throws SQLException {
        Hero tHero = new Hero();
 
-       tHero.setId(1);
-       tHero.setName("Knight");
-       tHero.setKlasa("tank");
+       tHero.setid(1);
+       tHero.setname("Knight");
+       tHero.setklasa("tank");
        heroRepository.add(tHero);
 
-       assertEquals(tHero.getName(), heroRepository.getById(1).getName());
+       assertEquals(tHero.getname(), heroRepository.getById(1).getname());
     }
 
     @Test
     public void updateHeroTest() throws SQLException {
        
        Hero updateHero = heroRepository.getById(2);
-       updateHero.setName("Archer");
+       updateHero.setname("Archer");
        heroRepository.update(updateHero, 2);
 
-       assertEquals("Archer", heroRepository.getById(2).getName());
-       assertEquals("Wizard"), heroRepository.getById(3).getName());
+       assertEquals("Archer", heroRepository.getById(2).getname());
+       assertEquals("Wizard", heroRepository.getById(3).getname());
     }
 
     @Test
     public void deleteHeroTest() throws SQLException {
        
         heroRepository.delete(4);
-        assertNull(heroRepository.getById(4).getName());
+        assertNull(heroRepository.getById(4).getname());
     }
 
     @Test
@@ -59,39 +84,14 @@ public class HeroRepositoryTest {
     }
 
     @Test
-    public boid getByName() {
-        Hero hero = heroRepository.getByKlasa("tank");
-        assertThat(hero.getName(), is("Warrior"));
+    public void getByName() {
+        Hero hero = heroRepository.getByName("Wizard");
+        assertThat(hero.getname(), is("Warrior"));
     }
 
     @Test
     public void getAll() throws SQLException {
         assertNotNull(heroRepository.getAll());
     }
-
-    @Before
-    public void initRepository() throws SQLException {
-        String url = "jdbc:hsqldb:hsql://localhost/workdb";
-        heroRepository = HeroRepositoryFactory(DriverManager.getConnection(url));
-        
-        Hero aDps = new Hero();
-        aDps.setId(2);
-        aDps.setName("Archer");
-        aDps.setKlasa("dps");
-
-        Hero wDps = new Hero();
-        wDps.setId(3);
-        wDps.setName("Wizard");
-        wDps.setKlasa("dps");
-
-        Hero wTank = new Hero();
-        wTank.setId(4);
-        wTank.setName("Warrior");
-        wTank.setKlasa("tank");           
-
-        heroRepository.add(aDps);
-        heroRepository.add(wDps);
-        heroRepository.add(wTank);
-}
 
 }
