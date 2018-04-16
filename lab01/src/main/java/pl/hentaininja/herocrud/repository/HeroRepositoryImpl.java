@@ -6,14 +6,16 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.sql.DriverManager;
 import java.util.LinkedList;
 import java.util.List;
 
-import com.sun.rmi.rmid.ExecOptionPermission;
+import org.springframework.stereotype.Component;
 
+@Component
 public class HeroRepositoryImpl implements HeroRepository {
 
-    private Connection connection;
+    Connection connection;
 
     private PreparedStatement addHeroStmt;
 	private PreparedStatement getAllHeroStmt;
@@ -31,7 +33,13 @@ public class HeroRepositoryImpl implements HeroRepository {
         setConnection(connection);
     }
 
-    public HeroRepositoryImpl() {
+    public HeroRepositoryImpl() throws SQLException {
+        this.connection = DriverManager.getConnection("jdbc:hsqldb:hsql://localhost/workdb");
+		if(!isDatabaseReady())
+		{
+			createTables();
+		}
+        this.setConnection(this.connection);
     }
 
     public void createTables() throws SQLException {
@@ -67,11 +75,11 @@ public class HeroRepositoryImpl implements HeroRepository {
   public void setConnection(Connection connection) throws SQLException{
       this.connection = connection;
       addHeroStmt = connection.prepareStatement("INSERT INTO Hero(id,name,klasa) VALUES (?,?,?)");
-      getAllHeroStmt = connection.prepareStatement("SELECT id,name,klasa FROM hero");
+      getAllHeroStmt = connection.prepareStatement("SELECT id,name,klasa FROM Hero");
       getByIdStmt = connection.prepareStatement("SELECT * FROM Hero WHERE id = ? ");	
       updateHeroStmt = connection.prepareStatement("UPDATE Hero SET name= ?, klasa= ? WHERE id = ?");
       deleteHeroStmt = connection.prepareStatement("DELETE FROM Hero WHERE id = ?");
-      getByNameStmt = connection.prepareStatement("SELECT * FROM hero WHERE name= ?");
+      getByNameStmt = connection.prepareStatement("SELECT * FROM Hero WHERE name= ?");
 }
 
     @Override
@@ -154,15 +162,17 @@ public class HeroRepositoryImpl implements HeroRepository {
     }
     
     @Override
-	public void delete(long id) {
-		try
+	public int delete(long id) {
+        int count = 0;
+        try
 		{
 			deleteHeroStmt.setLong(1, id);
 			deleteHeroStmt.executeUpdate();
 		}catch(SQLException e)
 		{
 			e.printStackTrace();
-		}
+        }
+        return count;
     }
 
     @Override
