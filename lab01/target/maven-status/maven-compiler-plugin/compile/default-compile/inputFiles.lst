@@ -1,0 +1,10 @@
+/home/PJWSTK/s12581/TAU/HeroesTAU/lab01/src/main/java/pl/hentaininja/herocrud/domain/Battle.java
+/home/PJWSTK/s12581/TAU/HeroesTAU/lab01/src/main/java/pl/hentaininja/herocrud/web/HeroApi.java
+/home/PJWSTK/s12581/TAU/HeroesTAU/lab01/src/main/java/pl/hentaininja/herocrud/domain/Hero.java
+/home/PJWSTK/s12581/TAU/HeroesTAU/lab01/src/main/java/pl/hentaininja/herocrud/repository/HeroRepositoryFactory.java
+/home/PJWSTK/s12581/TAU/HeroesTAU/lab01/src/main/java/pl/hentaininja/herocrud/DatabaseExport.java
+/home/PJWSTK/s12581/TAU/HeroesTAU/lab01/src/main/java/pl/hentaininja/herocrud/repository/HeroRepository.java
+/home/PJWSTK/s12581/TAU/HeroesTAU/lab01/src/main/java/pl/hentaininja/herocrud/configuration/RestInitializer.java
+/home/PJWSTK/s12581/TAU/HeroesTAU/lab01/src/main/java/pl/hentaininja/app/Party.java
+/home/PJWSTK/s12581/TAU/HeroesTAU/lab01/src/main/java/pl/hentaininja/herocrud/configuration/RestConfiguration.java
+/home/PJWSTK/s12581/TAU/HeroesTAU/lab01/src/main/java/pl/hentaininja/herocrud/repository/HeroRepositoryImpl.java

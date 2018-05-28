@@ -1,0 +1,8 @@
+<?xml version='1.0' encoding='UTF-8'?>
+
+<dataset>
+    <HERO NAME="Knight" KLASA="tank"/>
+    <HERO NAME="Archer" KLASA="dps"/>
+    <HERO NAME="Conjurer" KLASA="healer"/>
+    <HERO NAME="Warrior" KLASA="tank" />
+</dataset>

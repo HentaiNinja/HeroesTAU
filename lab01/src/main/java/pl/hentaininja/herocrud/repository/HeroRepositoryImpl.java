@@ -24,13 +24,15 @@ public class HeroRepositoryImpl implements HeroRepository {
 	private PreparedStatement getByIdStmt;
 	private PreparedStatement getByNameStmt;
     private PreparedStatement updateHeroStmt;
+    private PreparedStatement dropTableStmt;
 
     public HeroRepositoryImpl(Connection connection) throws SQLException {
         this.connection = connection;
-        if (!isDatabaseReady()) {
-            createTables();
-        }
-        setConnection(connection);
+		if(!isDatabaseReady())
+		{
+			createTables();
+		}
+		this.setConnection(this.connection);
     }
 
     public HeroRepositoryImpl() throws SQLException {
@@ -80,6 +82,7 @@ public class HeroRepositoryImpl implements HeroRepository {
       updateHeroStmt = connection.prepareStatement("UPDATE Hero SET name= ?, klasa= ? WHERE id = ?");
       deleteHeroStmt = connection.prepareStatement("DELETE FROM Hero WHERE id = ?");
       getByNameStmt = connection.prepareStatement("SELECT * FROM Hero WHERE name= ?");
+      dropTableStmt = connection.prepareCall("DROP TABLE Hero");
 }
 
     @Override
@@ -167,7 +170,7 @@ public class HeroRepositoryImpl implements HeroRepository {
         try
 		{
 			deleteHeroStmt.setLong(1, id);
-			deleteHeroStmt.executeUpdate();
+			count = deleteHeroStmt.executeUpdate();
 		}catch(SQLException e)
 		{
 			e.printStackTrace();
@@ -195,6 +198,11 @@ public class HeroRepositoryImpl implements HeroRepository {
 			e.printStackTrace();
 		}
 		return hero;
-}
+    }
+
+    @Override
+	public void dropDB() throws SQLException {
+	 dropTableStmt.executeUpdate();	
+	}
 
 }

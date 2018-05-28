@@ -14,4 +14,5 @@ public interface HeroRepository {
      int update(Hero h, long id) throws SQLException;
      int delete(long id);
      void setConnection(Connection connection) throws SQLException;
+     void dropDB() throws SQLException;
 }

@@ -1,16 +1,11 @@
 package pl.hentaininja.herocrud;
 
 import static org.junit.Assert.assertEquals;
-import static org.junit.Assert.assertFalse;
-import static org.junit.Assert.assertNull;
-import static org.junit.Assert.assertThat;
-import static org.junit.Assert.assertNotNull;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
-import java.util.List;
 
 import pl.hentaininja.herocrud.domain.Hero;
 import pl.hentaininja.herocrud.repository.HeroRepository;

@@ -1,0 +1,60 @@
+-------------------------------------------------------------------------------
+Test set: pl.hentaininja.herocrud.HeroDbUnitTest
+-------------------------------------------------------------------------------
+Tests run: 4, Failures: 0, Errors: 4, Skipped: 0, Time elapsed: 0.003 sec <<< FAILURE! - in pl.hentaininja.herocrud.HeroDbUnitTest
+doNothing(pl.hentaininja.herocrud.HeroDbUnitTest)  Time elapsed: 0.001 sec  <<< ERROR!
+org.dbunit.assertion.DbAssertionFailedError: driverClass is null
+	at org.dbunit.assertion.DefaultFailureHandler$DefaultFailureFactory.createFailure(DefaultFailureHandler.java:279)
+	at org.dbunit.assertion.DefaultFailureHandler.createFailure(DefaultFailureHandler.java:102)
+	at org.dbunit.assertion.SimpleAssert.fail(SimpleAssert.java:90)
+	at org.dbunit.assertion.SimpleAssert.assertTrue(SimpleAssert.java:77)
+	at org.dbunit.assertion.SimpleAssert.assertNotNullNorEmpty(SimpleAssert.java:61)
+	at org.dbunit.JdbcDatabaseTester.<init>(JdbcDatabaseTester.java:103)
+	at org.dbunit.PropertiesBasedJdbcDatabaseTester.<init>(PropertiesBasedJdbcDatabaseTester.java:68)
+	at org.dbunit.DBTestCase.newDatabaseTester(DBTestCase.java:70)
+	at org.dbunit.DatabaseTestCase.getDatabaseTester(DatabaseTestCase.java:109)
+	at org.dbunit.DatabaseTestCase.setUp(DatabaseTestCase.java:151)
+	at pl.hentaininja.herocrud.HeroDbUnitTest.setUp(HeroDbUnitTest.java:42)
+
+doNothing(pl.hentaininja.herocrud.HeroDbUnitTest)  Time elapsed: 0.001 sec  <<< ERROR!
+org.dbunit.assertion.DbAssertionFailedError: driverClass is null
+	at org.dbunit.assertion.DefaultFailureHandler$DefaultFailureFactory.createFailure(DefaultFailureHandler.java:279)
+	at org.dbunit.assertion.DefaultFailureHandler.createFailure(DefaultFailureHandler.java:102)
+	at org.dbunit.assertion.SimpleAssert.fail(SimpleAssert.java:90)
+	at org.dbunit.assertion.SimpleAssert.assertTrue(SimpleAssert.java:77)
+	at org.dbunit.assertion.SimpleAssert.assertNotNullNorEmpty(SimpleAssert.java:61)
+	at org.dbunit.JdbcDatabaseTester.<init>(JdbcDatabaseTester.java:103)
+	at org.dbunit.PropertiesBasedJdbcDatabaseTester.<init>(PropertiesBasedJdbcDatabaseTester.java:68)
+	at org.dbunit.DBTestCase.newDatabaseTester(DBTestCase.java:70)
+	at org.dbunit.DatabaseTestCase.getDatabaseTester(DatabaseTestCase.java:109)
+	at org.dbunit.DatabaseTestCase.tearDown(DatabaseTestCase.java:164)
+	at pl.hentaininja.herocrud.HeroDbUnitTest.tearDown(HeroDbUnitTest.java:36)
+
+checkAdding(pl.hentaininja.herocrud.HeroDbUnitTest)  Time elapsed: 0 sec  <<< ERROR!
+org.dbunit.assertion.DbAssertionFailedError: driverClass is null
+	at org.dbunit.assertion.DefaultFailureHandler$DefaultFailureFactory.createFailure(DefaultFailureHandler.java:279)
+	at org.dbunit.assertion.DefaultFailureHandler.createFailure(DefaultFailureHandler.java:102)
+	at org.dbunit.assertion.SimpleAssert.fail(SimpleAssert.java:90)
+	at org.dbunit.assertion.SimpleAssert.assertTrue(SimpleAssert.java:77)
+	at org.dbunit.assertion.SimpleAssert.assertNotNullNorEmpty(SimpleAssert.java:61)
+	at org.dbunit.JdbcDatabaseTester.<init>(JdbcDatabaseTester.java:103)
+	at org.dbunit.PropertiesBasedJdbcDatabaseTester.<init>(PropertiesBasedJdbcDatabaseTester.java:68)
+	at org.dbunit.DBTestCase.newDatabaseTester(DBTestCase.java:70)
+	at org.dbunit.DatabaseTestCase.getDatabaseTester(DatabaseTestCase.java:109)
+	at org.dbunit.DatabaseTestCase.setUp(DatabaseTestCase.java:151)
+	at pl.hentaininja.herocrud.HeroDbUnitTest.setUp(HeroDbUnitTest.java:42)
+
+checkAdding(pl.hentaininja.herocrud.HeroDbUnitTest)  Time elapsed: 0 sec  <<< ERROR!
+org.dbunit.assertion.DbAssertionFailedError: driverClass is null
+	at org.dbunit.assertion.DefaultFailureHandler$DefaultFailureFactory.createFailure(DefaultFailureHandler.java:279)
+	at org.dbunit.assertion.DefaultFailureHandler.createFailure(DefaultFailureHandler.java:102)
+	at org.dbunit.assertion.SimpleAssert.fail(SimpleAssert.java:90)
+	at org.dbunit.assertion.SimpleAssert.assertTrue(SimpleAssert.java:77)
+	at org.dbunit.assertion.SimpleAssert.assertNotNullNorEmpty(SimpleAssert.java:61)
+	at org.dbunit.JdbcDatabaseTester.<init>(JdbcDatabaseTester.java:103)
+	at org.dbunit.PropertiesBasedJdbcDatabaseTester.<init>(PropertiesBasedJdbcDatabaseTester.java:68)
+	at org.dbunit.DBTestCase.newDatabaseTester(DBTestCase.java:70)
+	at org.dbunit.DatabaseTestCase.getDatabaseTester(DatabaseTestCase.java:109)
+	at org.dbunit.DatabaseTestCase.tearDown(DatabaseTestCase.java:164)
+	at pl.hentaininja.herocrud.HeroDbUnitTest.tearDown(HeroDbUnitTest.java:36)
+
